@@ -116,30 +116,8 @@ public class VersionUtils {
     }
 
     public static String getBranch() {
-        String branch = "";
-        try {
-            CoreProtect instance = CoreProtect.getInstance();
-            if (instance == null) {
-                return "";
-            }
-
-            InputStreamReader reader = new InputStreamReader(instance.getClass().getResourceAsStream("/plugin.yml"));
-            branch = YamlConfiguration.loadConfiguration(reader).getString("branch");
-            reader.close();
-
-            if (branch == null || branch.equals("${project.branch}")) {
-                branch = "";
-            }
-            if (branch.startsWith("-")) {
-                branch = branch.substring(1);
-            }
-            if (branch.length() > 0) {
-                branch = "-" + branch;
-            }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        String branch = "master";
+        
 
         return branch;
     }
